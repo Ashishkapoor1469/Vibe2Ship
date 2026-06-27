@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-card: #18181b;
+  --bg-card-elevated: #1c1c1f;
+  --bg-glass: rgba(24, 24, 27, 0.8);
+  --border-glass: #27272a;
+  --border-glass-hover: rgba(0, 229, 153, 0.35);
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent-green: #00E599;
+  --accent-blue: #a1a1aa;
+  --accent-amber: #FBBF24;
+  --accent-red: #EF4444;
+  --accent-purple: #A78BFA;
+  --accent-completed: #22C55E;
+  --critical: #EF4444;
+  --important: #FBBF24;
+  --normal: #a1a1aa;
+  --low: #71717a;
+  --glow-green: rgba(0, 229, 153, 0.25);
+  --glow-amber: rgba(251, 191, 36, 0.15);
+  --glow-red: rgba(239, 68, 68, 0.15);
+  --glow-purple: rgba(167, 139, 250, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Glass cards */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+}
+
+.glass-elevated {
+  background: var(--bg-card-elevated);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+}
+
+.glass-dialog {
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+}
+
+.glass-hover {
+  transition: background 0.2s, border-color 0.25s, transform 0.25s;
+}
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-glass-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Panic circle animation */
+@keyframes panic-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+.panic-animate {
+  animation: panic-pulse 2s ease-in-out infinite;
+}
+
+/* Timeline connector */
+.timeline-line {
+  @apply absolute left-[11px] top-[28px] bottom-0 w-0.5;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Glow effects */
+.glow-green {
+  box-shadow: 0 0 25px var(--glow-green);
+}
+.glow-red {
+  box-shadow: 0 0 25px var(--glow-red);
+}
+.glow-amber {
+  box-shadow: 0 0 25px var(--glow-amber);
+}
+.glow-purple {
+  box-shadow: 0 0 25px var(--glow-purple);
+}
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(135deg, #00E599 0%, #00B77A 100%);
+  color: #09090b;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(0, 229, 153, 0.25);
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 40px rgba(0, 229, 153, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: #1c1c1f;
+  border: 1px solid #27272a;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background: #27272a;
+}
+
+/* Danger button */
+.btn-danger {
+  background: #EF4444;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+.btn-danger:hover {
+  background: #DC2626;
+}
+
+/* AI thinking dots */
+@keyframes ai-dot {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.ai-dot {
+  animation: ai-dot 1.4s ease-in-out infinite;
+  background: #A78BFA;
+}
+.ai-dot:nth-child(2) { animation-delay: 0.2s; }
+.ai-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Priority indicator line */
+.priority-line {
+  @apply absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full;
+}
+
+/* Progress track */
+.progress-track {
+  background: #27272a;
+}
+.progress-fill {
+  background: linear-gradient(90deg, #00E599, #00B77A);
+}
+
+/* Micro-interactions */
+.micro-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.micro-lift:hover {
+  transform: translateY(-2px);
+}
+
+.micro-scale {
+  transition: transform 0.15s ease;
+}
+.micro-scale:hover {
+  transform: scale(1.02);
+}
+
+.micro-pulse {
+  animation: micro-pulse 2s ease-in-out infinite;
+}
+
+@keyframes micro-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Floating animation for chat */
+.float-animate {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
